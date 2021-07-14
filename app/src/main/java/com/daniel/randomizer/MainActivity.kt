@@ -12,6 +12,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+/** Random Number App - A simple Tutorial app from app from TreeHouse.com that displays random Numbers **/
+
+
         // Here we use findViewById to initialize the views in our layout to the new variables to use them
         val rollButtonVariable = findViewById<Button>(R.id.rollButton)
         val seekBarVariable = findViewById<SeekBar>(R.id.seekBar)
@@ -24,20 +27,22 @@ class MainActivity : AppCompatActivity() {
         rollButtonVariable.setOnClickListener {
 
             // This here generates a random number starting from zero from within a certain range depending on the value of the seekBar
-            // and under it assigns the Random Number to the resultTextView in form of text because we converted it toString()
+            // and under it assigns the Random Number to the resultTextView in form of .text because we converted it toString()
             val rand = Random().nextInt(seekBarVariable.progress)
             resultTextViewVariable.text = rand.toString()
 
-            // If and else for checking a Special Number
-            if (rand == 5) {
-                checkTextViewVariable.text = "Congrats! You got a special Number 5"
+            // When expression to check the random Integer and display the Congratulatory message
+            when(rand) {
+                4 -> checkTextViewVariable.text = "You are close to the special Number!"
+                5 -> checkTextViewVariable.text = "You have obtained a special number 5!"
+                else -> checkTextViewVariable.text = " "
             }
         }
     }
 }
 
 /**
- *  Our 3 views are Button, a TextView to ask how many, a seekBar which acts as a selector and finally
+ *  Our 4 views are a Button, a TextView to ask how many, a seekBar which acts as a selector and finally
  *  a TextView to display the random Number
  *  Also a TextView to display the congratulatory message after checking the rand for 5
  * **/
